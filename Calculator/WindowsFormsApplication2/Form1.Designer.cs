@@ -71,6 +71,7 @@
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.numberButtonClick);
+            this.button1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button2
             // 
@@ -87,6 +88,7 @@
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.numberButtonClick);
+            this.button2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button3
             // 
@@ -103,6 +105,7 @@
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.numberButtonClick);
+            this.button3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button4
             // 
@@ -119,6 +122,7 @@
             this.button4.Text = "4";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.numberButtonClick);
+            this.button4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button5
             // 
@@ -135,6 +139,7 @@
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.numberButtonClick);
+            this.button5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button6
             // 
@@ -151,6 +156,7 @@
             this.button6.Text = "6";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.numberButtonClick);
+            this.button6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button7
             // 
@@ -167,6 +173,7 @@
             this.button7.Text = "7";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.numberButtonClick);
+            this.button7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button8
             // 
@@ -183,6 +190,7 @@
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.numberButtonClick);
+            this.button8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button9
             // 
@@ -199,6 +207,7 @@
             this.button9.Text = "9";
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.numberButtonClick);
+            this.button9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // button0
             // 
@@ -215,6 +224,7 @@
             this.button0.Text = "0";
             this.button0.UseVisualStyleBackColor = false;
             this.button0.Click += new System.EventHandler(this.numberButtonClick);
+            this.button0.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonDiv
             // 
@@ -231,6 +241,7 @@
             this.buttonDiv.Text = "÷";
             this.buttonDiv.UseVisualStyleBackColor = false;
             this.buttonDiv.Click += new System.EventHandler(this.operationButton);
+            this.buttonDiv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonMulti
             // 
@@ -247,6 +258,7 @@
             this.buttonMulti.Text = "x";
             this.buttonMulti.UseVisualStyleBackColor = false;
             this.buttonMulti.Click += new System.EventHandler(this.operationButton);
+            this.buttonMulti.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonSub
             // 
@@ -263,6 +275,7 @@
             this.buttonSub.Text = "-";
             this.buttonSub.UseVisualStyleBackColor = false;
             this.buttonSub.Click += new System.EventHandler(this.operationButton);
+            this.buttonSub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonAdd
             // 
@@ -279,10 +292,12 @@
             this.buttonAdd.Text = "+";
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.operationButton);
+            this.buttonAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonEquals
             // 
             this.buttonEquals.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.buttonEquals.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonEquals.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.buttonEquals.FlatAppearance.BorderSize = 2;
             this.buttonEquals.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
@@ -295,6 +310,7 @@
             this.buttonEquals.Text = "=";
             this.buttonEquals.UseVisualStyleBackColor = false;
             this.buttonEquals.Click += new System.EventHandler(this.buttonEquals_Click);
+            this.buttonEquals.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonDec
             // 
@@ -311,6 +327,7 @@
             this.buttonDec.Text = ".";
             this.buttonDec.UseVisualStyleBackColor = false;
             this.buttonDec.Click += new System.EventHandler(this.numberButtonClick);
+            this.buttonDec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonChangeSign
             // 
@@ -327,6 +344,7 @@
             this.buttonChangeSign.Text = "+/-";
             this.buttonChangeSign.UseVisualStyleBackColor = false;
             this.buttonChangeSign.Click += new System.EventHandler(this.buttonChangeSign_Click);
+            this.buttonChangeSign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonSquareRoot
             // 
@@ -343,6 +361,7 @@
             this.buttonSquareRoot.Text = "√";
             this.buttonSquareRoot.UseVisualStyleBackColor = false;
             this.buttonSquareRoot.Click += new System.EventHandler(this.buttonSquareRoot_Click);
+            this.buttonSquareRoot.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonSquared
             // 
@@ -359,6 +378,7 @@
             this.buttonSquared.Text = "x²";
             this.buttonSquared.UseVisualStyleBackColor = false;
             this.buttonSquared.Click += new System.EventHandler(this.buttonSquared_Click);
+            this.buttonSquared.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonCarrot
             // 
@@ -375,10 +395,12 @@
             this.buttonCarrot.Text = "xʸ";
             this.buttonCarrot.UseVisualStyleBackColor = false;
             this.buttonCarrot.Click += new System.EventHandler(this.operationButton);
+            this.buttonCarrot.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonClearEntry
             // 
             this.buttonClearEntry.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.buttonClearEntry.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonClearEntry.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.buttonClearEntry.FlatAppearance.BorderSize = 2;
             this.buttonClearEntry.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
@@ -391,6 +413,7 @@
             this.buttonClearEntry.Text = "CE";
             this.buttonClearEntry.UseVisualStyleBackColor = false;
             this.buttonClearEntry.Click += new System.EventHandler(this.buttonClearEntry_Click);
+            this.buttonClearEntry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonClear
             // 
@@ -407,10 +430,12 @@
             this.buttonClear.Text = "C";
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            this.buttonClear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonBackspace
             // 
             this.buttonBackspace.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.buttonBackspace.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonBackspace.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.buttonBackspace.FlatAppearance.BorderSize = 2;
             this.buttonBackspace.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
@@ -423,6 +448,7 @@
             this.buttonBackspace.Text = "DEL";
             this.buttonBackspace.UseVisualStyleBackColor = false;
             this.buttonBackspace.Click += new System.EventHandler(this.buttonBackspace_Click);
+            this.buttonBackspace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // buttonFactorial
             // 
@@ -439,6 +465,7 @@
             this.buttonFactorial.Text = "n!";
             this.buttonFactorial.UseVisualStyleBackColor = false;
             this.buttonFactorial.Click += new System.EventHandler(this.buttonFactorial_Click);
+            this.buttonFactorial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotkeyButtonPress);
             // 
             // resultBox
             // 
@@ -456,9 +483,11 @@
             // 
             // Form1
             // 
+            this.AcceptButton = this.buttonEquals;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.CancelButton = this.buttonBackspace;
             this.ClientSize = new System.Drawing.Size(340, 433);
             this.Controls.Add(this.resultBox);
             this.Controls.Add(this.buttonFactorial);
@@ -487,11 +516,13 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Shown += new System.EventHandler(this.buttonEquals_Click);
             this.ResumeLayout(false);
 
         }

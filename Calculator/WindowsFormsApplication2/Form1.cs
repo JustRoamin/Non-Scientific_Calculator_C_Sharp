@@ -1,6 +1,7 @@
 ﻿/*          Creator:    Joshua M. Haddix
  *     Date Created:    5/29/2019
- *     Last Changed:    5/29/2019
+ *     Last Changed:    6/19/2019
+ *          Version:    v0.3
  *      Description:    Non-Scientific Calculator exploring the different options for UI events in C# 
  * */
 
@@ -18,13 +19,14 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
+        double result = 0;
+        string operationSelection = "";
+
+
         public Form1()
         {
             InitializeComponent();
         }
-
-        double result = 0;
-        string operationSelection = "";
 
         private void numberButtonClick(object sender, EventArgs e)
         {
@@ -65,7 +67,6 @@ namespace WindowsFormsApplication2
         private void buttonEquals_Click(object sender, EventArgs e)
         {
 
-
             switch (operationSelection)
             {
                 case "+":
@@ -93,8 +94,11 @@ namespace WindowsFormsApplication2
                     }
                     resultBox.Text = result.ToString();
                     break;
-            }
 
+                default:
+                    resultBox.Text = resultBox.Text;
+                    break;
+            }
 
         }
 
@@ -124,5 +128,108 @@ namespace WindowsFormsApplication2
         {
             resultBox.Text = (double.Parse(resultBox.Text) * -1).ToString();
         }
+
+        private void hotkeyButtonPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case '1':
+                    hotkeyHelper(1);
+                    break;
+
+                case '2':
+                    hotkeyHelper(2);
+                    break;
+
+                case '3':
+                    hotkeyHelper(3);
+                    break;
+
+                case '4':
+                    hotkeyHelper(4);
+                    break;
+
+                case '5':
+                    hotkeyHelper(5);
+                    break;
+
+                case '6':
+                    hotkeyHelper(6);
+                    break;
+
+                case '7':
+                    hotkeyHelper(7);
+                    break;
+
+                case '8':
+                    hotkeyHelper(8);
+                    break;
+
+                case '9':
+                    hotkeyHelper(9);
+                    break;
+
+                case '0':
+                    hotkeyHelper(0);
+                    break;
+
+                case '+':
+                    operationSelection = "+";
+                    result = double.Parse(resultBox.Text);
+                    resultBox.Text = "0";
+                    break;
+
+                case '-':
+                    operationSelection = "-";
+                    result = double.Parse(resultBox.Text);
+                    resultBox.Text = "0";
+                    break;
+
+                case '*':
+                    operationSelection = "x";
+                    result = double.Parse(resultBox.Text);
+                    resultBox.Text = "0";
+                    break;
+
+                case '/':
+                    operationSelection = "÷";
+                    result = double.Parse(resultBox.Text);
+                    resultBox.Text = "0";
+                    break;
+
+                case '=':
+                    buttonEquals_Click(sender, e);
+                    break;
+
+                case '!':
+                    buttonFactorial_Click(sender, e);
+                    break;
+
+                case '^':
+                    operationSelection = "xʸ";
+                    result = double.Parse(resultBox.Text);
+                    resultBox.Text = "0";
+                    break;
+
+                case 'c':
+                    buttonClear_Click(sender, e);
+                    break;
+            }       
+        }
+
+        private void hotkeyHelper(double x)
+        {
+            double holder = result;
+            holder = (double.Parse(resultBox.Text) * 10) + x;
+            resultBox.Text = holder.ToString();
+        }
+
+        /*
+         * 
+         * For some reason this still enters 1 when i hit enter before pressing it manually.
+         * 
+         * also currently there is a bug where the first number entered is repeatedly added over and over as opposed to the second number
+         * 
+         * */
     }
 }
