@@ -1,7 +1,7 @@
 ﻿/*          Creator:    Joshua M. Haddix
  *     Date Created:    5/29/2019
- *     Last Changed:    6/19/2019
- *          Version:    v0.3
+ *     Last Changed:    6/24/2019
+ *          Version:    v0.4
  *      Description:    Non-Scientific Calculator exploring the different options for UI events in C# 
  * */
 
@@ -19,7 +19,8 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
-        double result = 0;
+        //  Variables to contain the memory of the numbers choosen and the operator the user has choosen
+        double memoryFirstDisplay = 0;
         string operationSelection = "";
 
 
@@ -28,6 +29,8 @@ namespace WindowsFormsApplication2
             InitializeComponent();
         }
 
+        //  Click event that occurs when a number button is targeted
+        //  Sender is cast as a button and the text of the button is then appended to the display
         private void numberButtonClick(object sender, EventArgs e)
         {
             if (resultBox.Text == "0")
@@ -37,17 +40,20 @@ namespace WindowsFormsApplication2
             resultBox.Text = resultBox.Text + button.Text;
         }
 
+        //  Clears the current display without clearing memory
         private void buttonClearEntry_Click(object sender, EventArgs e)
         {
             resultBox.Text = "0";
         }
 
+        //  Clears the current display and the memory of the calculator
         private void buttonClear_Click(object sender, EventArgs e)
         {
             resultBox.Text = "0";
-            result = 0;
+            memoryFirstDisplay = 0;
         }
 
+        //  Deletes a single digit of the display defaulting to 0
         private void buttonBackspace_Click(object sender, EventArgs e)
         {
             if (resultBox.Text.Length == 1)
@@ -56,43 +62,59 @@ namespace WindowsFormsApplication2
                 resultBox.Text = resultBox.Text.Remove(resultBox.Text.Length - 1);
         }
 
+        //  Casts the operation sender as a button reading the text to set the operator variable
+        //  Also saves the current display to the memory
         private void operationButton(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             operationSelection = button.Text;
-            result = double.Parse(resultBox.Text);
+            memoryFirstDisplay = double.Parse(resultBox.Text);
             resultBox.Text = "0";
         }
 
+        //  Computes the result of the memory and the current display based on the selected operator
         private void buttonEquals_Click(object sender, EventArgs e)
         {
-
+           
             switch (operationSelection)
             {
                 case "+":
-                    resultBox.Text = (result + double.Parse(resultBox.Text)).ToString();
+                    resultBox.Text = (memoryFirstDisplay + double.Parse(resultBox.Text)).ToString();
+                    operationSelection = "";
                     break;
 
                 case "-":
-                    resultBox.Text = (result - double.Parse(resultBox.Text)).ToString();
+                    resultBox.Text = (memoryFirstDisplay - double.Parse(resultBox.Text)).ToString();
+                    operationSelection = "";
                     break;
 
                 case "x":
-                    resultBox.Text = (result * Double.Parse(resultBox.Text)).ToString();
+                    resultBox.Text = (memoryFirstDisplay * Double.Parse(resultBox.Text)).ToString();
+                    operationSelection = "";
                     break;
 
                 case "÷":
-                    resultBox.Text = (result / double.Parse(resultBox.Text)).ToString();
+                    if (double.Parse(resultBox.Text) != 0)
+                    {
+                        resultBox.Text = (memoryFirstDisplay / double.Parse(resultBox.Text)).ToString();
+                        operationSelection = "";
+                    }
+                    else
+                    {
+                        resultBox.Text = "Error Div 0";
+                        operationSelection = "";
+                    }
                     break;
 
                 case "xʸ":
-                    double holder = result; 
+                    double holder = memoryFirstDisplay; 
 
                     for(int x = 1; x < double.Parse(resultBox.Text); x++)
                     {
-                        result =  result * holder;
+                        memoryFirstDisplay =  memoryFirstDisplay * holder;
                     }
-                    resultBox.Text = result.ToString();
+                    resultBox.Text = memoryFirstDisplay.ToString();
+                    operationSelection = "";
                     break;
 
                 default:
@@ -100,13 +122,18 @@ namespace WindowsFormsApplication2
                     break;
             }
 
+            
+
         }
 
+        //  Squares the current display
         private void buttonSquared_Click(object sender, EventArgs e)
         {
             resultBox.Text = (double.Parse(resultBox.Text) * double.Parse(resultBox.Text)).ToString();
         }
 
+
+        //  Calculates the Factorial of the current display
         private void buttonFactorial_Click(object sender, EventArgs e)
         {
             double holder = double.Parse(resultBox.Text);
@@ -119,16 +146,19 @@ namespace WindowsFormsApplication2
             resultBox.Text = holder.ToString();
         }
 
+        //  Calculates the Square root of the current display
         private void buttonSquareRoot_Click(object sender, EventArgs e)
         {
             resultBox.Text = (Math.Sqrt(double.Parse(resultBox.Text))).ToString();
         }
 
+        //  Changes the sign of the current display
         private void buttonChangeSign_Click(object sender, EventArgs e)
         {
             resultBox.Text = (double.Parse(resultBox.Text) * -1).ToString();
         }
 
+        // Hotkey controls
         private void hotkeyButtonPress(object sender, KeyPressEventArgs e)
         {
             switch (e.KeyChar)
@@ -175,25 +205,25 @@ namespace WindowsFormsApplication2
 
                 case '+':
                     operationSelection = "+";
-                    result = double.Parse(resultBox.Text);
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     resultBox.Text = "0";
                     break;
 
                 case '-':
                     operationSelection = "-";
-                    result = double.Parse(resultBox.Text);
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     resultBox.Text = "0";
                     break;
 
                 case '*':
                     operationSelection = "x";
-                    result = double.Parse(resultBox.Text);
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     resultBox.Text = "0";
                     break;
 
                 case '/':
                     operationSelection = "÷";
-                    result = double.Parse(resultBox.Text);
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     resultBox.Text = "0";
                     break;
 
@@ -207,7 +237,7 @@ namespace WindowsFormsApplication2
 
                 case '^':
                     operationSelection = "xʸ";
-                    result = double.Parse(resultBox.Text);
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     resultBox.Text = "0";
                     break;
 
@@ -217,9 +247,10 @@ namespace WindowsFormsApplication2
             }       
         }
 
+        // Helper Function to reduce code copying for hotkey controls
         private void hotkeyHelper(double x)
         {
-            double holder = result;
+            double holder = memoryFirstDisplay;
             holder = (double.Parse(resultBox.Text) * 10) + x;
             resultBox.Text = holder.ToString();
         }
@@ -228,7 +259,18 @@ namespace WindowsFormsApplication2
          * 
          * For some reason this still enters 1 when i hit enter before pressing it manually.
          * 
-         * also currently there is a bug where the first number entered is repeatedly added over and over as opposed to the second number
+         * Equals function does not currently support repeated presses, Currently: 15 + 5 = 20 = 35
+         * as opposed to the expected 15 + 5 = 20 = 25. 
+         * 
+         * A conditional to check for additional presses could solve this issue but new variables would 
+         * have to be introduced.
+         * 
+         * To fix the issue I have set the operator to "" after each equals press to remove the issue.
+         * 
+         * Future plans if I continue:
+         *      - Change equals to support repreated presses
+         *      - Fix entering 1 bug when pressing enter instead of following forms acceptance
+         * 
          * 
          * */
     }
