@@ -1,7 +1,7 @@
 ﻿/*          Creator:    Joshua M. Haddix
  *     Date Created:    5/29/2019
- *     Last Changed:    6/24/2019
- *          Version:    v0.4
+ *     Last Changed:    6/26/2019
+ *          Version:    v0.5
  *      Description:    Non-Scientific Calculator exploring the different options for UI events in C# 
  * */
 
@@ -21,6 +21,7 @@ namespace WindowsFormsApplication2
     {
         //  Variables to contain the memory of the numbers choosen and the operator the user has choosen
         double memoryFirstDisplay = 0;
+        string memorySecondDisplay = "";
         string operationSelection = "";
 
 
@@ -38,6 +39,11 @@ namespace WindowsFormsApplication2
 
             Button button = (Button)sender;
             resultBox.Text = resultBox.Text + button.Text;
+
+            if(operationSelection != "")
+            {
+                memorySecondDisplay = memorySecondDisplay + button.Text;
+            }
         }
 
         //  Clears the current display without clearing memory
@@ -51,6 +57,7 @@ namespace WindowsFormsApplication2
         {
             resultBox.Text = "0";
             memoryFirstDisplay = 0;
+            memorySecondDisplay = "";
         }
 
         //  Deletes a single digit of the display defaulting to 0
@@ -79,42 +86,39 @@ namespace WindowsFormsApplication2
             switch (operationSelection)
             {
                 case "+":
-                    resultBox.Text = (memoryFirstDisplay + double.Parse(resultBox.Text)).ToString();
-                    operationSelection = "";
+                    resultBox.Text = (memoryFirstDisplay + double.Parse(memorySecondDisplay)).ToString();
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     break;
 
                 case "-":
-                    resultBox.Text = (memoryFirstDisplay - double.Parse(resultBox.Text)).ToString();
-                    operationSelection = "";
+                    resultBox.Text = (memoryFirstDisplay - double.Parse(memorySecondDisplay)).ToString();
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     break;
 
                 case "x":
-                    resultBox.Text = (memoryFirstDisplay * Double.Parse(resultBox.Text)).ToString();
-                    operationSelection = "";
+                    resultBox.Text = (memoryFirstDisplay * Double.Parse(memorySecondDisplay)).ToString();
+                    memoryFirstDisplay = double.Parse(resultBox.Text);
                     break;
 
                 case "÷":
                     if (double.Parse(resultBox.Text) != 0)
                     {
-                        resultBox.Text = (memoryFirstDisplay / double.Parse(resultBox.Text)).ToString();
-                        operationSelection = "";
+                        resultBox.Text = (memoryFirstDisplay / double.Parse(memorySecondDisplay)).ToString();
+                        memoryFirstDisplay = double.Parse(resultBox.Text);
                     }
                     else
                     {
                         resultBox.Text = "Error Div 0";
-                        operationSelection = "";
                     }
                     break;
 
                 case "xʸ":
-                    double holder = memoryFirstDisplay; 
-
-                    for(int x = 1; x < double.Parse(resultBox.Text); x++)
+                    for(int x=1; x< double.Parse(memorySecondDisplay); x++)
                     {
-                        memoryFirstDisplay =  memoryFirstDisplay * holder;
+                        memoryFirstDisplay *= memoryFirstDisplay;
                     }
+
                     resultBox.Text = memoryFirstDisplay.ToString();
-                    operationSelection = "";
                     break;
 
                 default:
@@ -250,26 +254,29 @@ namespace WindowsFormsApplication2
         // Helper Function to reduce code copying for hotkey controls
         private void hotkeyHelper(double x)
         {
-            double holder = memoryFirstDisplay;
-            holder = (double.Parse(resultBox.Text) * 10) + x;
-            resultBox.Text = holder.ToString();
+            if (operationSelection != "")
+            {
+                double holder;
+                holder = (double.Parse(resultBox.Text) * 10 + x);
+                resultBox.Text = holder.ToString();
+                memorySecondDisplay = resultBox.Text;
+            }
+            else
+            {
+                double holder = memoryFirstDisplay;
+                holder = (double.Parse(resultBox.Text) * 10) + x;
+                resultBox.Text = holder.ToString();
+            }
+            
         }
 
         /*
          * 
          * For some reason this still enters 1 when i hit enter before pressing it manually.
          * 
-         * Equals function does not currently support repeated presses, Currently: 15 + 5 = 20 = 35
-         * as opposed to the expected 15 + 5 = 20 = 25. 
-         * 
-         * A conditional to check for additional presses could solve this issue but new variables would 
-         * have to be introduced.
-         * 
-         * To fix the issue I have set the operator to "" after each equals press to remove the issue.
          * 
          * Future plans if I continue:
-         *      - Change equals to support repreated presses
-         *      - Fix entering 1 bug when pressing enter instead of following forms acceptance
+         *      - Fix entering 1 bug when pressing enter instead of following forms acceptance property
          * 
          * 
          * */
